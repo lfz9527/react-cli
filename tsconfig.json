@@ -3,7 +3,7 @@
     "allowUnreachableCode": false, // 报告执行不到的代码错误
     "allowUnusedLabels": false, // 不报告未使用的标签错误
     "alwaysStrict": false, // 以严格模式解析并为每个源文件生成 "use strict"语句
-    "strictNullChecks": false, // 当尝试在可能为null或undefined的变量上访问属性时，
+    "strictNullChecks": true, // 当尝试在可能为null或undefined的变量上访问属性时，
     "preserveConstEnums": false, // true 使用 const enum 产生内联成员，会导致没有引入的const enum也会生成代码
     "experimentalDecorators": true, // 启用实验性的ES装饰器
     "noImplicitAny": false, // 是否默认禁用 any
