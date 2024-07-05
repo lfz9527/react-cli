@@ -10,7 +10,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,json}\"",
     "format:ci": "prettier --list-different \"**/*.{ts,tsx,js,jsx}\"",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
-    "lint:ci": "eslint \"**/*.{ts,js}\""
+    "lint:ci": "eslint \"**/*.{ts,js}\"",
+    "lint:style": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}"
   },
   "keywords": [],
   "author": "",
