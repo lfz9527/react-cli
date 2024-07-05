@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve -c build/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack -c build/webpack.prod.js"
+    "build": "cross-env NODE_ENV=production webpack -c build/webpack.prod.js",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,json}\"",
+    "format:ci": "prettier --list-different \"**/*.{ts,tsx,js,jsx}\""
   },
   "keywords": [],
   "author": "",
@@ -32,6 +34,7 @@
     "postcss": "^8.4.39",
     "postcss-loader": "^8.1.1",
     "postcss-preset-env": "^9.5.15",
+    "prettier": "^3.3.2",
     "style-loader": "^4.0.0",
     "typescript": "^5.5.3",
     "webpack": "^5.92.1",

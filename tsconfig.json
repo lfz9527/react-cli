@@ -24,8 +24,8 @@
     "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["src/*"],
-      "@types/*":["types/*"]
-    },
+      "@types/*": ["types/*"]
+    }
   },
   "include": ["./**/*.d.ts", "./**/*.ts", "./**/*.tsx"],
   "exclude": ["node_modules"]

@@ -13,7 +13,7 @@ insert_final_newline = true
 # 使用空格缩进
 indent_style = space
 # 缩进大小为 4
-indent_size = 4
+indent_size = 2
 
 
 # 匹配 Markdown 文件
