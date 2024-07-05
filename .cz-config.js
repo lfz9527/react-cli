@@ -1,18 +1,16 @@
 "use strict"
 module.exports = {
   types: [
-    { value: "feat✨新增", name: "新增:    新的内容" },
-    { value: "fix🐛修复", name: "修复:    修复一个Bug" },
-    { value: "docs📝文档", name: "文档:    变更的只有文档" },
-    { value: "style💄格式", name: "格式:    空格, 分号等格式修复" },
-    {
-      value: "refactor♻️重构",
-      name: "重构:    代码重构，注意和特性、修复区分开",
-    },
-    { value: "perf⚡️性能", name: "性能:    提升性能" },
-    { value: "test✅测试", name: "测试:    添加一个测试" },
-    { value: "build🔧工具", name: "工具:    开发工具变动(构建、脚手架工具等)" },
-    { value: "callback⏪回滚", name: "回滚:    代码回退" },
+    { value: "feat", name: "✨新增:    新的内容" },
+    { value: "fix", name: "🐛修复:    修复一个Bug" },
+    { value: "docs", name: "📝文档:    变更的只有文档" },
+    { value: "style", name: "💄格式:    空格, 分号等格式修复" },
+    { value: "refactor", name: "️♻️重构:    代码重构，注意和特性、修复区分开" },
+    { value: "perf", name: "️️⚡️性能:    提升性能" },
+    { value: "test", name: "✅测试:    添加一个测试" },
+    { value: "build", name: "🔧工具:    开发工具变动(构建、脚手架工具等)" },
+    { value: "rollback", name: "⏪回滚:    代码回退" },
+    { value: "addLog", name: "👨🏻‍💻添加log:    代码回退" },
   ],
   scopes: [
     { name: "leetcode" },
