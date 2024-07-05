@@ -14,7 +14,7 @@ module.exports = {
         "refactor",
         "style",
         "test",
-        "addLog",
+        "callback",
         "other",
       ],
     ],
