@@ -33,6 +33,18 @@ module.exports = {
       emoji: "🔨",
     },
   ],
+  scopes: [
+    { name: "🚀特性" },
+    { name: "🧩格式" },
+    { name: "📚重构" },
+    { name: "🎨测试" },
+    { name: "✅测试" },
+    { name: "♻️重构" },
+    { name: "📦️构建" },
+    { name: "🎡集成" },
+    { name: "⏪️回退" },
+    { name: "🔨其他" },
+  ],
   // it needs to match the value for field type. Eg.: 'fix'
   /*  scopeOverrides: {
 	fix: [
