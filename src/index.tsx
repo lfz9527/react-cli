@@ -1,6 +1,7 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "@/design/index.less"
+import "./index.less"
 import App from "./App"
 import { ConfigProvider } from "antd"
 

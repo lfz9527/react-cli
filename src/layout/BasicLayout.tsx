@@ -1,7 +1,6 @@
-import React, { useState } from "react"
-import { useNavigate, Outlet } from "react-router-dom"
-import type { MenuProps } from "antd"
-import { Menu, Layout, Button } from "antd"
+import React, { useState, useEffect, Suspense } from "react"
+import { useLocation, useNavigate, Outlet } from "react-router-dom"
+import { Menu, Layout, Button, theme } from "antd"
 import {
   EyeTwoTone,
   TagTwoTone,
@@ -9,67 +8,82 @@ import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
 } from "@ant-design/icons"
-
+import "./BasicLayout.less"
+import { type MenuType } from "./types/index"
 const { Header, Content, Sider } = Layout
-type MenuItem = Required<MenuProps>["items"][number]
 
 const BasicLayout: React.FC = () => {
   const nav = useNavigate()
-
-  // 设置菜单栏隐藏显示
+  const loc = useLocation()
+  const { token } = theme.useToken()
+  const { colorBgContainer, borderRadiusLG } = token
+  // 设置菜单栏收启显示
   const [collapsed, setCollapsed] = useState(false)
-  const [stateOpenKeys, setOpenKeys] = useState<string[]>([])
-  const collapsedChange = () => {
-    setCollapsed(!collapsed)
-  }
-
-  const item: MenuItem[] = [
+  const [item, setItem] = useState<MenuType[]>([
     {
-      key: "登录",
-      label: "login",
+      key: "/login",
+      label: "登录",
       icon: <EyeTwoTone />,
     },
     {
-      key: "404",
+      key: "/404",
       label: "404",
       icon: <TagTwoTone />,
     },
     {
-      key: "403",
+      key: "/403",
       label: "403",
       icon: <ShopTwoTone />,
+      children: [
+        {
+          key: "/404?name=1",
+          label: "404",
+          icon: <ShopTwoTone />,
+        },
+      ],
     },
-  ]
+  ])
 
-  const menuClick = (data: any) => {
-    console.log("data", data)
+  // 监听路由变化
+  useEffect(() => {
+    // const { pathname, search } = loc
+  }, [loc])
 
-    // nav(data.item.props.path)
+  const collapsedChange = () => {
+    setCollapsed(!collapsed)
   }
-  const onOpenChange: MenuProps["onOpenChange"] = (openKeys) => {
-    setOpenKeys(openKeys.slice(-1))
+
+  const menuClick = ({ key = "" }) => {
+    // const path = key
+    // if (path) nav(path)
   }
 
   return (
     <Layout style={{ height: "100vh", width: "100vw" }}>
-      <Sider trigger={null} width={180} collapsible collapsed={collapsed}>
+      <Sider
+        className="fixed-side"
+        trigger={null}
+        width={180}
+        collapsible
+        collapsed={collapsed}
+      >
+        {/* log */}
         <div className="logo-vertical" />
         <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
           items={item}
           style={{
             height: "100%",
             borderRight: 0,
+
             boxShadow: "0 0 10px rgba(0,0,0,.1)",
           }}
-          openKeys={stateOpenKeys}
-          onOpenChange={onOpenChange}
+          // onOpenChange={onOpenChange}
           onClick={menuClick}
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: "#fff" }}>
+        <Header style={{ padding: 0, background: colorBgContainer }}>
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
@@ -83,12 +97,18 @@ const BasicLayout: React.FC = () => {
         </Header>
         <Content
           style={{
-            padding: 12,
-            margin: 0,
+            padding: 0,
+            margin: 8,
             minHeight: 280,
+            overflow: "auto",
+            borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet></Outlet>
+          {/* 二级路由出口 */}
+          {/* @TODO 缺少Loading */}
+          <Suspense>
+            <Outlet />
+          </Suspense>
         </Content>
       </Layout>
     </Layout>

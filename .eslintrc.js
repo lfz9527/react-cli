@@ -45,6 +45,7 @@ module.exports = {
   plugins: ["react"],
   // 规则配置，用于设定规则的严格程度
   rules: {
+    "@typescript-eslint/consistent-type-definitions": OFF,
     // 对象的最后一个可以增加【,】
     "@typescript-eslint/comma-dangle": OFF,
     // 单引号关闭
