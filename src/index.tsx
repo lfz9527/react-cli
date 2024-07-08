@@ -1,11 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
 import "@/design/index.less"
-import App from "./app"
+import App from "./App"
+import { ConfigProvider } from "antd"
 
 const root = ReactDOM.createRoot(document.getElementById("app")!)
 root.render(
   <React.StrictMode>
-    <App />
+    <ConfigProvider>
+      <App />
+    </ConfigProvider>
   </React.StrictMode>,
 )

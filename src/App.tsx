@@ -1,12 +1,8 @@
 import React from "react"
-
-interface Props {
-  data?: string
-  info?: string
-  type?: string
-}
-const App: React.FC<Props> = ({ data, info, type }: Props) => {
-  return <div></div>
+import { RouterProvider } from "react-router-dom"
+import router from "./router"
+const App: React.FC = () => {
+  return <RouterProvider router={router}></RouterProvider>
 }
 
 export default App
