@@ -43,6 +43,7 @@ const BasicLayout: React.FC = () => {
     setMenuKeys(getMenKeys)
   }, [loc])
 
+  // 获取菜单key
   const getMenKeys = () => {
     const pathnames = loc.pathname
     const strArr = pathnames ? [pathnames] : []
@@ -52,6 +53,7 @@ const BasicLayout: React.FC = () => {
     }
   }
 
+  // 菜单收起展开
   const collapsedChange = () => {
     setCollapsed(!collapsed)
   }
@@ -60,12 +62,13 @@ const BasicLayout: React.FC = () => {
     key: string
     keyPath: string[]
   }
+  // 菜单点击
   const menuClick = ({ key, keyPath }: menuClickType) => {
     nav(key)
     setMenuKeys({ ...menuKeys, selectKey: [key] })
   }
 
-  // * 菜单展开收起
+  // 菜单展开收起
   const onMenuOpenChange = (keys: string[]) => {
     setMenuKeys({ ...menuKeys, openKeys: keys })
   }
