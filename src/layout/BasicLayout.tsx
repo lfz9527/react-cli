@@ -1,22 +1,21 @@
 import React, { useState, useEffect, Suspense } from "react"
 import { useLocation, useNavigate, Outlet } from "react-router-dom"
-import { Menu, Layout, Button, theme } from "antd"
-import {
-  EyeTwoTone,
-  TagTwoTone,
-  ShopTwoTone,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-} from "@ant-design/icons"
+import { Menu, Layout, theme } from "antd"
+import { EyeTwoTone, TagTwoTone } from "@ant-design/icons"
 import "./BasicLayout.less"
-import { type MenuType, type MenuOption } from "./types/index"
-const { Header, Content, Sider } = Layout
+import {
+  type MenuType,
+  type MenuOption,
+  type menuClickType,
+} from "./types/index"
+import LHeader from "./components/LHeader"
+const { Content, Sider } = Layout
 
 const BasicLayout: React.FC = () => {
   const nav = useNavigate()
   const loc = useLocation()
   const { token } = theme.useToken()
-  const { colorBgContainer, borderRadiusLG } = token
+  const { borderRadiusLG } = token
   // 设置菜单栏收启显示
   const [collapsed, setCollapsed] = useState(false)
   // 菜单选项
@@ -58,10 +57,6 @@ const BasicLayout: React.FC = () => {
     setCollapsed(!collapsed)
   }
 
-  type menuClickType = {
-    key: string
-    keyPath: string[]
-  }
   // 菜单点击
   const menuClick = ({ key, keyPath }: menuClickType) => {
     nav(key)
@@ -100,29 +95,17 @@ const BasicLayout: React.FC = () => {
         />
       </Sider>
       <Layout>
-        <Header style={{ padding: 0, background: colorBgContainer }}>
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={collapsedChange}
-            style={{
-              fontSize: "14px",
-              width: 64,
-              height: 64,
-            }}
-          />
-        </Header>
+        <LHeader collapsed={collapsed} onChange={collapsedChange} />
         <Content
           style={{
-            padding: 0,
-            margin: 8,
+            padding: 8,
             minHeight: 280,
             overflow: "auto",
             borderRadius: borderRadiusLG,
           }}
         >
           {/* 二级路由出口 */}
-          {/* @TODO 缺少Loading */}
+          {/* <div style={{ height: 2000, width: 800, background: "red" }}></div> */}
           <Suspense>
             <Outlet />
           </Suspense>

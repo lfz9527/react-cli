@@ -7,4 +7,9 @@ type MenuOption = {
   openKeys: string[]
 }
 
-export type { MenuType, MenuOption }
+type menuClickType = {
+  key: string
+  keyPath: string[]
+}
+
+export type { MenuType, MenuOption, menuClickType }
