@@ -9,7 +9,7 @@ import {
   MenuFoldOutlined,
 } from "@ant-design/icons"
 import "./BasicLayout.less"
-import { type MenuType } from "./types/index"
+import { type MenuType, type MenuOption } from "./types/index"
 const { Header, Content, Sider } = Layout
 
 const BasicLayout: React.FC = () => {
@@ -19,43 +19,55 @@ const BasicLayout: React.FC = () => {
   const { colorBgContainer, borderRadiusLG } = token
   // 设置菜单栏收启显示
   const [collapsed, setCollapsed] = useState(false)
+  // 菜单选项
+  // * 保持菜单激活状态
+  const [menuKeys, setMenuKeys] = useState<MenuOption>({
+    selectKey: [],
+    openKeys: [],
+  })
   const [item, setItem] = useState<MenuType[]>([
     {
-      key: "/login",
-      label: "登录",
+      key: "/dashboard",
+      label: "dashboard",
       icon: <EyeTwoTone />,
     },
     {
-      key: "/404",
-      label: "404",
+      key: "/demo",
+      label: "demo",
       icon: <TagTwoTone />,
-    },
-    {
-      key: "/403",
-      label: "403",
-      icon: <ShopTwoTone />,
-      children: [
-        {
-          key: "/404?name=1",
-          label: "404",
-          icon: <ShopTwoTone />,
-        },
-      ],
     },
   ])
 
   // 监听路由变化
   useEffect(() => {
-    // const { pathname, search } = loc
+    setMenuKeys(getMenKeys)
   }, [loc])
+
+  const getMenKeys = () => {
+    const pathnames = loc.pathname
+    const strArr = pathnames ? [pathnames] : []
+    return {
+      selectKey: strArr,
+      openKeys: strArr,
+    }
+  }
 
   const collapsedChange = () => {
     setCollapsed(!collapsed)
   }
 
-  const menuClick = ({ key = "" }) => {
-    // const path = key
-    // if (path) nav(path)
+  type menuClickType = {
+    key: string
+    keyPath: string[]
+  }
+  const menuClick = ({ key, keyPath }: menuClickType) => {
+    nav(key)
+    setMenuKeys({ ...menuKeys, selectKey: [key] })
+  }
+
+  // * 菜单展开收起
+  const onMenuOpenChange = (keys: string[]) => {
+    setMenuKeys({ ...menuKeys, openKeys: keys })
   }
 
   return (
@@ -66,19 +78,21 @@ const BasicLayout: React.FC = () => {
         width={180}
         collapsible
         collapsed={collapsed}
+        collapsedWidth="50"
       >
         {/* log */}
         <div className="logo-vertical" />
         <Menu
           mode="inline"
           items={item}
+          defaultOpenKeys={menuKeys.openKeys}
+          selectedKeys={menuKeys.selectKey}
           style={{
             height: "100%",
             borderRight: 0,
-
             boxShadow: "0 0 10px rgba(0,0,0,.1)",
           }}
-          // onOpenChange={onOpenChange}
+          onOpenChange={onMenuOpenChange}
           onClick={menuClick}
         />
       </Sider>

@@ -2,4 +2,9 @@ import type { MenuProps } from "antd"
 
 type MenuType = Required<MenuProps>["items"][number]
 
-export type { MenuType }
+type MenuOption = {
+  selectKey: string[]
+  openKeys: string[]
+}
+
+export type { MenuType, MenuOption }

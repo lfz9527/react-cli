@@ -62,6 +62,7 @@ module.exports = {
     "@typescript-eslint/explicit-function-return-type": OFF,
     "no-tabs": OFF,
     "@typescript-eslint/indent": OFF,
+    "@typescript-eslint/strict-boolean-expressions": OFF,
   },
   // 忽略文件
   ignorePatterns: [
