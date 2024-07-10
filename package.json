@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack serve -c build/webpack.dev.js",
-    "build": "cross-env NODE_ENV=production webpack -c build/webpack.prod.js",
+    "dev": "cross-env NODE_ENV=development webpack serve --config build/webpack.dev.js",
+    "build": "cross-env NODE_ENV=production webpack --config build/webpack.prod.js",
     "clean:cache": "rimraf .temp_cache rimraf node_modules && pnpm install",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,json}\"",
     "format:ci": "prettier --list-different \"**/*.{ts,tsx,js,jsx}\"",
@@ -13,7 +13,8 @@
     "lint:ci": "eslint \"**/*.{ts,js}\"",
     "lint:style": "stylelint --config .stylelintrc.js src/**/*.{less,css,scss}",
     "prepare": "husky install",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "analyz": "cross-env NODE_ENV=production ANALYZE_BUNDLE=true webpack --config build/webpack.prod.js"
   },
   "keywords": [],
   "author": "",
@@ -82,6 +83,7 @@
     "thread-loader": "^4.0.2",
     "typescript": "4.9.4",
     "webpack": "^5.92.1",
+    "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^5.0.4",
     "webpack-merge": "^6.0.1",

@@ -6,8 +6,6 @@ const path = require("path")
 module.exports = merge(base, {
   mode: "development", // 开发模式
   resolve: {
-    // 优先采用es6模块化方式的代码
-    mainFields: ["module", "main", "browser"],
     // 使⽤绝对路径指明第三⽅模块存放的位置，以减少搜索步骤
     // modules: [],
   },

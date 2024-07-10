@@ -25,6 +25,9 @@ module.exports = {
     clean: true,
   },
   resolve: {
+    //如果target为webworker或web（默认），mainFields默认值为["browser", "module", "main"]
+    // 针对 Npm 中的第三⽅模块优先采⽤ module 中指向的 ES6 模块化语法的⽂件
+    mainFields: ["module", "main", "browser"], // 提高查找速度
     // 配置 extensions 来告诉 webpack 在没有书写后缀时，以什么样的顺序去寻找文件
     extensions: paths.moduleFileExtensions,
     alias: {

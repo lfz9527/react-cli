@@ -71,5 +71,5 @@
   "less.validate": false,
   "scss.validate": false,
   "stylelint.validate": ["css", "less", "sass", "scss"],
-  "cSpell.words": ["commitlint", "stylelint", "webpackbar"]
+  "cSpell.words": ["analyz", "commitlint", "stylelint", "webpackbar"]
 }
