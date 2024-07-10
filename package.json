@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack serve -c build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack -c build/webpack.prod.js",
-    "clean:cache": "rimraf node_modules && pnpm install",
+    "clean:cache": "rimraf .temp_cache rimraf node_modules && pnpm install",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,cjs,mjs,json}\"",
     "format:ci": "prettier --list-different \"**/*.{ts,tsx,js,jsx}\"",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\" --fix",
