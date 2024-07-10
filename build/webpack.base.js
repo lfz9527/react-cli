@@ -41,16 +41,19 @@ module.exports = {
             test: /.(ts|tsx|jsx)$/,
             include: paths.appSrc,
             exclude: /node_modules/,
-            use: {
-              loader: "babel-loader",
-              options: {
-                presets: [
-                  ["@babel/preset-env"],
-                  ["@babel/preset-typescript"],
-                  ["@babel/preset-react"],
-                ],
+            use: [
+              "thread-loader",
+              {
+                loader: "babel-loader",
+                options: {
+                  presets: [
+                    ["@babel/preset-env"],
+                    ["@babel/preset-typescript"],
+                    ["@babel/preset-react"],
+                  ],
+                },
               },
-            },
+            ],
           },
           {
             test: /\.css$/,
