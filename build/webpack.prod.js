@@ -4,6 +4,10 @@ const base = require("./webpack.base.js")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
 const TerserPlugin = require("terser-webpack-plugin")
+const glob = require("glob")
+const { PurgeCSSPlugin } = require("purgecss-webpack-plugin")
+const path = require("path")
+const paths = require("./config/paths")
 
 module.exports = merge(base, {
   mode: "production", // 生产模式
@@ -88,6 +92,18 @@ module.exports = merge(base, {
   plugins: [
     new MiniCssExtractPlugin({
       filename: "static/css/[chunkhash:8].css", // 将css单独提测出来放在assets/css 下
+    }),
+    // 去除无用的样式
+    new PurgeCSSPlugin({
+      // paths表示指定要去解析的文件名数组路径
+      // Purgecss会去解析这些文件然后把无用的样式移除
+      paths: glob.sync(
+        [
+          path.join(__dirname, "../public/index.html"),
+          path.join(__dirname, "../src/**/*"),
+        ],
+        { nodir: true },
+      ),
     }),
   ],
 })
