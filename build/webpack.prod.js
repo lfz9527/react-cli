@@ -42,7 +42,7 @@ module.exports = merge(base, {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: "assets/css/[chunkhash:8].css", // 将css单独提测出来放在assets/css 下
+      filename: "static/css/[chunkhash:8].css", // 将css单独提测出来放在assets/css 下
     }),
   ],
 })

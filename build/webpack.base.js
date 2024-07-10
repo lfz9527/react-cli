@@ -21,7 +21,8 @@ module.exports = {
   entry: paths.appIndexJs,
   output: {
     path: path.dist, // 打包后的代码放在dist目录下
-    filename: `[name].[chunkhash:8].${appPackage.version}.js`, // 打包的文件名
+    filename: `static/js/[name]_[chunkhash:8]_${appPackage.version}.js`, // 打包入口的文件名
+    chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。
     clean: true,
   },
   resolve: {
@@ -38,7 +39,8 @@ module.exports = {
         oneOf: [
           // 使用babel 处理 tsx
           {
-            test: /.(jsx?)|(tsx?)$/,
+            test: /.(ts?)|(tsx?)$/,
+            include: paths.appSrc,
             exclude: /node_modules/,
             use: {
               loader: "babel-loader",
@@ -81,7 +83,7 @@ module.exports = {
               },
             },
             generator: {
-              filename: "assets/imgs/[name].[hash:8][ext]",
+              filename: "static/imgs/[name].[hash:8][ext]",
             },
           },
           // 处理字体
@@ -89,7 +91,7 @@ module.exports = {
             test: /\.(eot|ttf|woff|woff2)$/i,
             type: "asset/resource", // 字体图标不能转化为base64, 这里使用 asset/resource
             generator: {
-              filename: "assets/fonts/[name].[contenthash][ext]",
+              filename: "static/fonts/[name].[contenthash][ext]",
             },
           },
         ],
