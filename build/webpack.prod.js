@@ -89,6 +89,61 @@ module.exports = merge(base, {
       }),
       // @TODO 图片压缩，但是打包构建会变成很慢，在后面在考虑按需压缩
     ],
+    // @TODO 拆包会影响每个资源请求，后续有需要再按需拆包
+    // splitChunks: {
+    //   chunks: "all",
+    //   minSize: 20000, // 允许新拆出 chunk 的最小体积，也是异步 chunk 公共模块的强制拆分体积
+    //   maxAsyncRequests: 6, // 每个异步加载模块最多能被拆分的数量
+    //   maxInitialRequests: 6, // 每个入口和它的同步依赖最多能被拆分的数量
+    //   enforceSizeThreshold: 50000, // 强制执行拆分的体积阈值并忽略其他限制
+    //   cacheGroup: {
+    //     libs: {
+    //       // 第三方库
+    //       name: "chunk-libs",
+    //       test: /[\V/]node_modules[\\/]/,
+    //       priority: 10,
+    //       chunks: "initial", // 只打包初始时依赖的第三方
+    //     },
+    //     ckeditor5_document: {
+    //       // 第三方库
+    //       name: "chunk-ckeditor5-document",
+    //       test: /[\V/]assets[\V/]common[\V/]js[\V/]ckeditor5[\\/]ckeditor5-build-decoupled-document[\//]/,
+    //       priority: 20,
+    //     },
+    //     ckeditor5_vue2: {
+    //       // 第三方库
+    //       name: "chunk-ckeditor5-vue2",
+    //       test: /[\V/]assets[\V/]common[\V/]js[\V/]ckeditor5[\\/]ckeditor5-vue2[\\/]/,
+    //       priority: 20,
+    //     },
+    //     elementUI: {
+    //       // elementuI 单独拆包
+    //       name: "chunk-elementUI",
+    //       test: /[\V/]node_modules[\V]element-ui[\/]/,
+    //       priority: 20, // 权重要大于 libs
+    //     },
+    //     echarts: {
+    //       // echarts 单独拆包
+    //       name: "chunk-echarts",
+    //       test: /[\\/]node_modules[\V/]echarts[\\/]/,
+    //       priority: 20, // 权重要大于 libs
+    //     },
+    //     src: {
+    //       // echarts 单独拆包
+    //       name: "chunk-src",
+    //       test: /[\V/]src[\\/]/,
+    //       chunks: "all",
+    //       priority: 10, // 权重要大于 libs
+    //     },
+    //     commons: {
+    //       // 公共模块包
+    //       name: `chunk-commons`,
+    //       minChunks: 2,
+    //       priority: 0,
+    //       reuseExistingChunk: true, //
+    //     },
+    //   },
+    // },
   },
   plugins: [
     new MiniCssExtractPlugin({

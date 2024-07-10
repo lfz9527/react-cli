@@ -11,7 +11,7 @@
     "forceConsistentCasingInFileNames": true, //禁止对同一个文件的不一致的引用。
     "declaration": false, // 是否自动创建类型声明文件
     "target": "esnext",
-    "module": "esnext", // 当前代码语法
+    "module": "ES2015", // 当前代码语法
     "moduleResolution": "node",
     "importHelpers": true,
     "jsx": "preserve",

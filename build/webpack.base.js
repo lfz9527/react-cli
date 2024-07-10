@@ -21,7 +21,7 @@ module.exports = {
   output: {
     path: paths.dist, // 打包后的代码放在dist目录下
     filename: `static/js/[name]_[chunkhash:8]_${appPackage.version}.js`, // 打包入口的文件名
-    chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。
+    chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。splitChunks分割的文件也会命名
     clean: true,
   },
   resolve: {
