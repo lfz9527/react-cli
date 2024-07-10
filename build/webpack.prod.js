@@ -87,6 +87,7 @@ module.exports = merge(base, {
         parallel: true, //使用多进程并发运行提高构建速度
         extractComments: false, //是否将注释抽取到一个单独的文件中
       }),
+      // @TODO 图片压缩，但是打包构建会变成很慢，在后面在考虑按需压缩
     ],
   },
   plugins: [
