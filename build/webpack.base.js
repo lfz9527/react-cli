@@ -1,4 +1,3 @@
-const path = require("path")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const paths = require("./config/paths")
 const appPackage = require(paths.appPackageJson)
@@ -26,6 +25,8 @@ module.exports = {
     clean: true,
   },
   resolve: {
+    // 使⽤绝对路径指明第三⽅模块存放的位置，以减少搜索步骤
+    modules: [paths.module],
     // 配置 extensions 来告诉 webpack 在没有书写后缀时，以什么样的顺序去寻找文件
     extensions: paths.moduleFileExtensions,
     alias: {
@@ -39,7 +40,7 @@ module.exports = {
         oneOf: [
           // 使用babel 处理 tsx
           {
-            test: /.(ts?)|(tsx?)$/,
+            test: /.(ts|tsx|jsx)$/,
             include: paths.appSrc,
             exclude: /node_modules/,
             use: {
@@ -53,7 +54,23 @@ module.exports = {
               },
             },
           },
-          { test: /\.css$/, use: ["css-loader"] },
+          {
+            test: /\.css$/,
+            use: [
+              "style-loader",
+              "css-loader",
+              {
+                loader: "postcss-loader",
+                options: {
+                  // 它可以帮助我们将一些现代的 CSS 特性，转成大多数浏览器认识的 CSS，并且会根据目标浏览器或运行时环境添加所需的 polyfill；
+                  // 也包括会自动帮助我们添加 autoprefixer
+                  postcssOptions: {
+                    plugins: [["postcss-preset-env", {}]],
+                  },
+                },
+              },
+            ],
+          },
           // less
           {
             test: /\.less$/,
