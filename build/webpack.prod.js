@@ -38,8 +38,14 @@ module.exports = merge(base, {
   optimization: {
     minimize: true,
     minimizer: [
-      // 多进程并发执行，提升构建速度 。 运行时默认的并发数：os.cpus().length - 1
-      new CssMinimizerPlugin(),
+      // 压缩css
+      new CssMinimizerPlugin({
+        parallel: true,
+        minimizerOptions: {
+          //默认配置
+          preset: "default",
+        },
+      }),
       // 压缩js，参考vue-cli的配置，肯定是经过优化调整的
       new TerserPlugin({
         terserOptions: {
