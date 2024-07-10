@@ -3,6 +3,7 @@ const { merge } = require("webpack-merge")
 const base = require("./webpack.base.js")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin")
+const TerserPlugin = require("terser-webpack-plugin")
 
 module.exports = merge(base, {
   mode: "production", // 生产模式
@@ -35,9 +36,47 @@ module.exports = merge(base, {
     ],
   },
   optimization: {
+    minimize: true,
     minimizer: [
       // 多进程并发执行，提升构建速度 。 运行时默认的并发数：os.cpus().length - 1
       new CssMinimizerPlugin(),
+      // 压缩js，参考vue-cli的配置，肯定是经过优化调整的
+      new TerserPlugin({
+        terserOptions: {
+          mangle: {
+            //设置丑化相关的选项
+            safari10: true,
+          },
+          compress: {
+            //设置压缩相关的选项
+            arrows: false,
+            collapse_vars: false,
+            comparisons: false,
+            computed_props: false,
+            hoist_funs: false,
+            hoist_props: false,
+            hoist_vars: false,
+            inline: false,
+            loops: false,
+            negate_iife: false,
+            properties: false,
+            reduce_funcs: false,
+            reduce_vars: false,
+            switches: false,
+            toplevel: false, //底层变量是否进行转换
+            typeofs: false,
+            booleans: true,
+            if_return: true,
+            sequences: true,
+            unused: true,
+            conditionals: true,
+            dead_code: true,
+            evaluate: true,
+          },
+        },
+        parallel: true, //使用多进程并发运行提高构建速度
+        extractComments: false, //是否将注释抽取到一个单独的文件中
+      }),
     ],
   },
   plugins: [
