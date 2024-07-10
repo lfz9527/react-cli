@@ -19,14 +19,12 @@ const plugins = [
 module.exports = {
   entry: paths.appIndexJs,
   output: {
-    path: path.dist, // 打包后的代码放在dist目录下
+    path: paths.dist, // 打包后的代码放在dist目录下
     filename: `static/js/[name]_[chunkhash:8]_${appPackage.version}.js`, // 打包入口的文件名
     chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。
     clean: true,
   },
   resolve: {
-    // 使⽤绝对路径指明第三⽅模块存放的位置，以减少搜索步骤
-    modules: [paths.module],
     // 配置 extensions 来告诉 webpack 在没有书写后缀时，以什么样的顺序去寻找文件
     extensions: paths.moduleFileExtensions,
     alias: {
