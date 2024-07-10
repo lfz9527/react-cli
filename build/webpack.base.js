@@ -21,10 +21,13 @@ module.exports = {
   output: {
     path: paths.dist, // 打包后的代码放在dist目录下
     filename: `static/js/[name]_[chunkhash:8]_${appPackage.version}.js`, // 打包入口的文件名
-    chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。
+    chunkFilename: `static/js/[name]_[chunkhash:8].js`, // 于指定非入口文件的名称，即间接引入的代码块（chunk）的文件名。splitChunks分割的文件也会命名
     clean: true,
   },
   resolve: {
+    //如果target为webworker或web（默认），mainFields默认值为["browser", "module", "main"]
+    // 针对 Npm 中的第三⽅模块优先采⽤ module 中指向的 ES6 模块化语法的⽂件
+    mainFields: ["module", "main", "browser"], // 提高查找速度
     // 配置 extensions 来告诉 webpack 在没有书写后缀时，以什么样的顺序去寻找文件
     extensions: paths.moduleFileExtensions,
     alias: {

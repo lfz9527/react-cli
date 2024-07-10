@@ -1,0 +1,13 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "modules": false // modules的值一定要设置成false 关闭 Babel 的模块转换功能，保留原本的 ES6 模块化语法。
+        }
+      }
+    ],
+    "@babel/preset-typescript"
+  ]
+}
