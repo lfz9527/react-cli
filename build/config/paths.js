@@ -14,5 +14,6 @@ module.exports = {
   dist: resolveApp("dist"),
   appPackageJson: resolveApp("package.json"),
   appSrc: resolveApp("src"),
+  module: resolveApp("node_modules"),
   moduleFileExtensions,
 }

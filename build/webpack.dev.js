@@ -10,7 +10,7 @@ module.exports = merge(base, {
   },
   devServer: {
     hot: true,
-    open: true, // 编译完自动打开浏览器
+    open: false, // 编译完自动打开浏览器
     port: 8080,
     client: {
       overlay: {
