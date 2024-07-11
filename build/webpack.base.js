@@ -2,6 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const paths = require("./config/paths")
 const appPackage = require(paths.appPackageJson)
 const WebpackBar = require("webpackbar")
+const generateModifyVars = require("./config/generateModifyVars")
 const { NODE_ENV } = process.env
 const isDev = NODE_ENV === "development"
 
@@ -96,7 +97,15 @@ module.exports = {
                   },
                 },
               },
-              "less-loader",
+              {
+                loader: "less-loader",
+                options: {
+                  lessOptions: {
+                    javascriptEnabled: true,
+                    modifyVars: { ...generateModifyVars() },
+                  },
+                },
+              },
             ],
           },
           // 处理文件
