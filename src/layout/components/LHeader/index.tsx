@@ -3,6 +3,7 @@ import { Dropdown, Layout, Button, theme, Avatar } from "antd"
 import { type MenuType } from "@/layout/types"
 import { MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons"
 import "./index.less"
+import { useNavigate } from "react-router-dom"
 const { Header } = Layout
 
 type Props = {
@@ -11,12 +12,16 @@ type Props = {
 }
 
 const LHeader: React.FC<Props> = ({ collapsed, onChange }) => {
+  const nav = useNavigate()
   const { token } = theme.useToken()
   const { colorBgContainer } = token
   const items: MenuType[] = [
     {
       key: "1",
       label: "退出登录",
+      onClick: () => {
+        nav("/login")
+      },
     },
     {
       key: "2",
