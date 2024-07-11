@@ -107,6 +107,9 @@ module.exports = merge(base, {
             conditionals: true,
             dead_code: true,
             evaluate: true,
+            drop_console: true,
+            drop_debugger: true,
+            pure_funcs: ["console.log"],
           },
         },
         parallel: true, //使用多进程并发运行提高构建速度
