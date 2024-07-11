@@ -102,7 +102,7 @@ const Login: React.FC = () => {
             {/* <Divider plain>其他登录方式</Divider> */}
             <div className="form-footer-content">
               没有账户？
-              <a className="login-form-register" href="#">
+              <a className="login-form-register" href="">
                 注册
               </a>
             </div>
