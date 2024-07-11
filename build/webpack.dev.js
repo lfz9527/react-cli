@@ -2,6 +2,7 @@
 const { merge } = require("webpack-merge")
 const base = require("./webpack.base.js")
 const path = require("path")
+const ReactRefreshPlugin = require("@pmmmwh/react-refresh-webpack-plugin")
 
 module.exports = merge(base, {
   mode: "development", // 开发模式
@@ -19,6 +20,7 @@ module.exports = merge(base, {
      */
     // noParse: [],
   },
+  plugins: [new ReactRefreshPlugin()],
   cache: {
     type: "filesystem", // 使用文件缓存
     cacheDirectory: path.join(__dirname, "../.temp_cache"),
