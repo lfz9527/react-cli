@@ -2,6 +2,8 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const paths = require("./config/paths")
 const appPackage = require(paths.appPackageJson)
 const WebpackBar = require("webpackbar")
+const { NODE_ENV } = process.env
+const isDev = NODE_ENV === "development"
 
 const plugins = [
   new HtmlWebpackPlugin({
@@ -54,6 +56,9 @@ module.exports = {
                     ["@babel/preset-typescript"],
                     ["@babel/preset-react"],
                   ],
+                  plugins: [
+                    isDev && require.resolve("react-refresh/babel"),
+                  ].filter(Boolean),
                 },
               },
             ],
