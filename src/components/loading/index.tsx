@@ -7,12 +7,14 @@ type Props = {
 }
 
 const Loading: React.FC<Props> = (props) => {
-  const { text = "数据加载中..." } = props
+  const { text = "加载中" } = props
+  const content = <div style={{ padding: 100 }} />
 
   return (
     <div className="loading">
-      <Spin size="large" />
-      <h3 className="loading-text">{text}</h3>
+      <Spin tip={text} size="large">
+        {content}
+      </Spin>
     </div>
   )
 }

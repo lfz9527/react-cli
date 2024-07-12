@@ -34,7 +34,6 @@ const Login: React.FC = () => {
 
   // 表单提交成功
   const onFinish: FormProps<FieldType>["onFinish"] = (values: FieldType) => {
-    console.log("values", values)
     nav("/dashboard")
   }
 

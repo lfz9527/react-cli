@@ -9,6 +9,7 @@ import {
   type menuClickType,
 } from "./types/index"
 import LHeader from "./components/LHeader"
+import Loading from "@/components/loading"
 const { Content, Sider } = Layout
 
 const BasicLayout: React.FC = () => {
@@ -98,6 +99,7 @@ const BasicLayout: React.FC = () => {
         <LHeader collapsed={collapsed} onChange={collapsedChange} />
         <Content
           style={{
+            position: "relative",
             padding: 8,
             minHeight: 280,
             overflow: "auto",
@@ -106,7 +108,7 @@ const BasicLayout: React.FC = () => {
         >
           {/* 二级路由出口 */}
           {/* <div style={{ height: 2000, width: 800, background: "red" }}></div> */}
-          <Suspense>
+          <Suspense fallback={<Loading />}>
             <Outlet />
           </Suspense>
         </Content>
